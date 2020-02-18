@@ -7,6 +7,6 @@ Possible improvements:
 - More levels
 - Text rendering
 
-Screenshot
+Screenshot:
 
 ![Screenshot](Preview.png)
