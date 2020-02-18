@@ -1,8 +1,11 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-#define STB_IMAGE_IMPLEMENTATION
+
 #include "Dependencies/stb_image.h"
+
+#include <string>
+#include <iostream>
 
 class Texture
 {
@@ -20,6 +23,7 @@ public:
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+		stbi_set_flip_vertically_on_load(true);
 		unsigned char* data = stbi_load(imagePath.c_str(), &width, &height, &nrChannels, 0);
 
 		if (data)
@@ -37,9 +41,7 @@ public:
 
 		stbi_image_free(data);
 	}
-	Texture()
-	{
-	}
+	Texture() = default;
 	void bind() const
 	{
 		glBindTexture(GL_TEXTURE_2D, texture);

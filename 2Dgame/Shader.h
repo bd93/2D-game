@@ -1,13 +1,16 @@
 #ifndef SHADER_H
 #define SHADER_H
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
 #include <fstream>
 #include <sstream>
-
 #include <string>
+#include <exception>
 
 
 class Shader
@@ -16,17 +19,30 @@ private:
 	GLuint vertexShader;
 	GLuint fragmentShader;
 	GLuint shaderProgram;
+	std::string vertexShaderFile;
 public:
+	std::string proba()
+	{
+		return vertexShaderFile;
+	}
 	Shader(std::string vertexShaderFile, std::string fragmentShaderFile)
 	{
-		std::string vertexShaderString = getShaderSource(vertexShaderFile);
-		std::string fragmentShaderString = getShaderSource(fragmentShaderFile);
+		this->vertexShaderFile = vertexShaderFile;
+		const std::string& vertexShaderString = getShaderSource(vertexShaderFile);
+		const std::string& fragmentShaderString = getShaderSource(fragmentShaderFile);
 		
 		const char* vertexShaderSource   = vertexShaderString.c_str();
 		const char* fragmentShaderSource = fragmentShaderString.c_str();
 
-		vertexShader   = glCreateShader(GL_VERTEX_SHADER);
-		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		try
+		{
+			vertexShader   = glCreateShader(GL_VERTEX_SHADER);
+			fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		}
+		catch (std::exception& e)
+		{
+			std::cout << e.what();
+		}
 
 		glShaderSource(vertexShader,   1, &vertexShaderSource,   NULL);
 		glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
@@ -49,9 +65,7 @@ public:
 		glDeleteShader(vertexShader);
 		glDeleteShader(fragmentShader);
 	}
-	Shader()
-	{
-	}
+	Shader() = default;
 	~Shader()
 	{
 	}

@@ -134,18 +134,36 @@
   <ItemGroup>
     <ClInclude Include="Dependencies\stb_image.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="MeteoritePool.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Helpers\DeltaTime.h" />
+    <ClInclude Include="Helpers\RandomGenerator.h" />
+    <ClInclude Include="Helpers\ResourceManager.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Interfaces\IEventListener.h" />
+    <ClInclude Include="Meteorites\Meteorite.h" />
+    <ClInclude Include="Meteorites\MeteoritePool.h" />
+    <ClInclude Include="Objects\Meteorite.h" />
+    <ClInclude Include="Objects\MeteoritePool.h" />
+    <ClInclude Include="Objects\Object.h" />
+    <ClInclude Include="Objects\ParticleSystem.h" />
+    <ClInclude Include="Objects\Player.h" />
+    <ClInclude Include="Objects\Weapon.h" />
+    <ClInclude Include="Renderers\ParticleRenderer.h" />
+    <ClInclude Include="Renderers\Renderer.h" />
+    <ClInclude Include="Renderers\SpriteRenderer.h" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="Weapon.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\glad.c" />
+    <ClCompile Include="Helpers\DeltaTime.cpp" />
+    <ClCompile Include="Helpers\ResourceManager.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Dependencies\stb_image.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Objects\ParticleSystem.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\laser_beam.png" />
@@ -154,6 +172,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\fragment.shader" />
+    <None Include="Shaders\particle_fragment.shader" />
+    <None Include="Shaders\particle_vertex.shader" />
+    <None Include="Shaders\sprite_fragment.shader" />
+    <None Include="Shaders\sprite_vertex.shader" />
     <None Include="Shaders\vertex.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
