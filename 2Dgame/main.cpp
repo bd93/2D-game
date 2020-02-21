@@ -14,14 +14,14 @@
 
 int main()
 {
-	Game game;
-	game.Init();
+	std::unique_ptr<Game> game = std::make_unique<Game>();
+	game->Init();
 
-	while (game.Running())
+	while (game->Running())
 	{
-		game.Render();
-		game.HandleEvents();
-		game.Update();
+		game->Render();
+		game->HandleEvents();
+		game->Update();
 	}
 
 	return 0;
